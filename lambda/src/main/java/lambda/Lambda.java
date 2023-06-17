@@ -20,7 +20,7 @@ public class Lambda implements RequestHandler<LambdaRequest, LambdaResponse> {
   }
 
   private String processInput(String input) {
-    return String.format("This is your message: " + input);
+    return String.format("This is your message in upper case: %s .",input.toUpperCase());
   }
 }
 
