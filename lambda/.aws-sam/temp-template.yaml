@@ -1,0 +1,11 @@
+Resources:
+  Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 60
+      MemorySize: 256
+      Handler: lambda.Lambda
+      CodeUri: /Users/anca/Workspace/github/testcontainers-lambda/lambda
+      Runtime: java11
+      Architectures:
+        - x86_64

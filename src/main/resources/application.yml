@@ -1,0 +1,7 @@
+aws:
+  lambda:
+    endpoint: http://localhost.localstack.cloud:4566
+  region: us-east-1
+  credentials:
+    secret-key: test_secret_key
+    access-key: test-access_key
