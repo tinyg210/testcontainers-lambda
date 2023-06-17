@@ -15,7 +15,7 @@ public class Lambda implements RequestHandler<LambdaRequest, LambdaResponse> {
 
     LambdaResponse response = new LambdaResponse();
     response.setOutput(processedOutput);
-    context.getLogger().log("Processing complete.Message " + processedOutput);
+    context.getLogger().log("Processing complete.Message: " + processedOutput);
     return response;
   }
 

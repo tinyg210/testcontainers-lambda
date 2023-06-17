@@ -70,6 +70,8 @@ public class LambdaTest {
 
   @BeforeAll
   static void setup() {
+    localStack.followOutput(logConsumer);
+
     lambdaClient = LambdaClient.builder()
         .endpointOverride(localStack.getEndpoint())
         .region(Region.of(localStack.getRegion())).build();
