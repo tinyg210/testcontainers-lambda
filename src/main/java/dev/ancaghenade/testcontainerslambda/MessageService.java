@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.services.lambda.LambdaClient;
 import software.amazon.awssdk.services.lambda.model.InvokeRequest;
-import software.amazon.awssdk.services.lambda.model.InvokeResponse;
 import software.amazon.awssdk.services.lambda.model.LambdaException;
 
 
@@ -23,24 +22,24 @@ public class MessageService {
   }
 
   public String invokeLambda(String input) throws IOException {
-    LambdaRequest lambdaRequest = new LambdaRequest();
+    var lambdaRequest = new LambdaRequest();
     lambdaRequest.setInput(input);
 
-    ObjectMapper objectMapper = new ObjectMapper();
-    String requestPayload = objectMapper.writeValueAsString(lambdaRequest);
+    var objectMapper = new ObjectMapper();
+    var requestPayload = objectMapper.writeValueAsString(lambdaRequest);
 
-    SdkBytes payload = SdkBytes.fromUtf8String(requestPayload);
+    var payload = SdkBytes.fromUtf8String(requestPayload);
 
-    InvokeRequest invokeRequest = InvokeRequest.builder()
+    var invokeRequest = InvokeRequest.builder()
         .functionName("lambda-demo")
         .payload(payload)
         .build();
 
     try {
-      InvokeResponse invokeResponse = lambdaClient.invoke(invokeRequest);
-      String responsePayload = invokeResponse.payload().asUtf8String();
+      var invokeResponse = lambdaClient.invoke(invokeRequest);
+      var responsePayload = invokeResponse.payload().asUtf8String();
 
-      LambdaResponse lambdaResponse = objectMapper.readValue(responsePayload, LambdaResponse.class);
+      var lambdaResponse = objectMapper.readValue(responsePayload, LambdaResponse.class);
 
       return lambdaResponse.getOutput();
     } catch (LambdaException e) {
